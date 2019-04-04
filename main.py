@@ -33,4 +33,5 @@ while (True):
     #f.write("{} - {}\n".format(coord, rtc.now()))
     #time.sleep(10)
     #s.send("{}".format(coord))
-    print("{} - {} - {}".format(coord, rtc.now(), gc.mem_free()))
+    print("{} - {}".format(coord, rtc.now()))
+    time.sleep(5)
