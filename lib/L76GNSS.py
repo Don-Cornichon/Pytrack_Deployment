@@ -81,6 +81,6 @@ class L76GNSS:
         self.timeout_status = True
         if debug and debug_timeout:
             print('GPS timed out after %f seconds' % (chrono_timeout))
-            return(None, None)
+            return('Lat: %s, Lon: %s' % None, None)
         else:
-            return(lat_d, lon_d)
+            return('Lat: %s, Lon: %s' % (lat_d, lon_d))
