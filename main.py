@@ -33,20 +33,26 @@ l76 = L76GNSS(py, timeout=30)
 
 
 ### LORA
-# A basic package header, B: 1 byte for the deviceId, B: 1 byte for the pkg size
-_LORA_PKG_FORMAT = "BB%ds"
-_LORA_PKG_ACK_FORMAT = "BBB"
-DEVICE_ID = 0x01
-# Open a Lora Socket, use tx_iq to avoid listening to our own messages
-lora = LoRa(mode=LoRa.LORA, tx_iq=True, region=LoRa.EU868)
+lora = LoRa(mode=LoRa.LORA, region=LoRa.EU868)
 l = socket.socket(socket.AF_LORA, socket.SOCK_RAW)
-l.setblocking(False)
 
-while (True):
+
+while True:
+    l.setblocking(True)
     coord = l76.coordinates()
     #f.write("{} - {}\n".format(coord, rtc.now()))
     # Package send containing a simple string
     #s.send("{}".format(coord))
-    l.send("coord")
-    #print("{} - {}".format(coord, rtc.now()))
-    time.sleep(5)
+    #print('Gheu')
+    #l.send(bytes(coord))
+    #c = hex(coord)
+    #c = coord.decode('utf-8')
+    if coord != (None, None):
+        #print("{}".format(coord))
+        co = ("{}".format(coord))
+        l.send(co)
+        print("GPS location sended")
+    else:
+        print('no GPS datas found')
+    #print("{}".format(coord))
+    time.sleep(3)
